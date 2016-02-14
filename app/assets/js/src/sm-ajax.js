@@ -2,7 +2,7 @@
     
     var Ajax = {
         
-        adminAjax: 'http://m2.dev/wp-admin/admin-ajax.php',
+        adminAjax: SupportManager.ajaxurl,
         
         newTicket: {
             

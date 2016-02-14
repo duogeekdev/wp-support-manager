@@ -2,7 +2,7 @@
     
     var settings = {
         
-        adminAjax: 'http://m2.dev/wp-admin/admin-ajax.php',
+        adminAjax: SupportManager.ajaxurl,
         doneSuccessHTML: '<div class="settings_save_sucess">Settings Saved</div>',
         
         confirm_checker: function() {

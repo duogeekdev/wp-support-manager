@@ -95,6 +95,8 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             
             wp_enqueue_style( 'sm-public-css' );
             wp_enqueue_script( 'sm-public-js' );
+			
+			wp_localize_script('jquery',"SupportManager", $this->js_vars() ); 
             
         }
         
@@ -131,11 +133,20 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             
             wp_enqueue_script( 'sm-select2-js' );
             wp_enqueue_script( 'sm-popup-js' );
-            wp_enqueue_script( 'sm-admin-js' );            
+            wp_enqueue_script( 'sm-admin-js' );   
+			
+			wp_localize_script('jquery',"SupportManager", $this->js_vars() );         
             
         }
-        
-        
+		      
+        /**
+		 * Return array of some dynamic value those are used in JavaScript
+		 */
+		 
+		 public function js_vars(){
+		 	return array("ajaxurl"=>admin_url("admin-ajax.php"),"assets"=>SM_FILES_URI."/assets");
+		 }
+		 
         
     }
     
