@@ -3,7 +3,7 @@
     var settings = {
         
         adminAjax: SupportManager.ajaxurl,
-        doneSuccessHTML: '<div class="settings_save_sucess">Settings Saved</div>',
+        doneSuccessHTML: '<div class="settings_save_success">Settings Saved</div>',
         
         confirm_checker: function() {
             $( '.action_confirm' ).click( function( e ) {
@@ -40,7 +40,7 @@
         },
         
         removeSuccessHTML: function() {
-            $( '.settings_save_sucess' ).remove();
+            $( '.settings_save_success' ).remove();
         },
         
         show_loading: function() {
