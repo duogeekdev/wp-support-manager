@@ -57,7 +57,7 @@ if( ! class_exists( 'SM_Settings' ) ) {
                     'data'      => __( 'You don\'t have permission to save', 'sm' )
                 );
             }else{
-                $options = SM_Options::get_instance();
+                $options = SM_Loader::Create( 'SM_Options' );
                 $options->set_option( $_POST['name'], $_POST['value'] );
                 $options->update();
                 

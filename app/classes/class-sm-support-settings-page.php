@@ -9,7 +9,7 @@ if( ! class_exists( 'SM_Support_Settings_Page' ) ) {
         public $data, $log;
         
         protected function __construct() {
-            $obj = parent::get_instance();
+            $obj = SM_Loader::Create( 'SM_Settings_Parent' );
             $this->data = $obj->data;
             $this->log = new SM_Logs();
         }

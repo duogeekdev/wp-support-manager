@@ -35,11 +35,12 @@ if( ! class_exists( 'SM_Loader' ) ) {
             $obj = false;
             
             if( method_exists( $class, 'get_instance' ) ) {
-                _doing_it_wrong(
+                /*_doing_it_wrong(
                     'SM_Loader::Load()',
                     'This class is a singleton class, needs to be called using SM_Loader::Create() method',
                     SM_VERSION
-                );
+                );*/
+                wp_die( 'This class - <b>' . $class . '</b> is a singleton class, needs to be called using SM_Loader::Create() method' );
             }else{
                 if( $id != null ) {
                     if( isset( self::$_cached_date[ $class . '_' . $id ] ) && is_object( self::$_cached_date[ $class . '_' . $id ] ) ) {

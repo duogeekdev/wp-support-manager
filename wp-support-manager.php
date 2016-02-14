@@ -45,14 +45,13 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             
             $this->version = SM_VERSION;
             SM_Loader::Create( 'SM_Utility' );
+            SM_Loader::Create( 'SM_Settings' );
+            SM_Loader::Create( 'SM_Settings_Parent' );
+            SM_Loader::Create( 'SM_ShortCodes' );
             
             add_action( 'wp_enqueue_scripts', array( &$this, 'register_scripts_front_end' ) );
             add_action( 'admin_enqueue_scripts', array( &$this, 'register_scripts_admin_end' ) );
-            new SM_Config();
-            SM_Settings::get_instance();
-            SM_Settings_Parent::get_instance();
-            SM_ShortCodes::get_instance();
-
+            
         }
         
         /**
@@ -140,7 +139,7 @@ if( ! class_exists( 'SM_Plugin' ) ) {
         
     }
     
-    SM_Plugin::get_instance();
+    SM_Loader::Create( 'SM_Plugin' );
     
     //SM_Loader::Load( 'SM_Support_CPT', 2468 );
     

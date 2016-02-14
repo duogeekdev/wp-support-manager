@@ -9,7 +9,7 @@ if( ! class_exists( 'SM_Settings_Parent' ) ) {
         public $data;
         
         protected function __construct() {
-            $options = SM_Options::get_instance();
+            $options = SM_Loader::Create( 'SM_Options' );
             $this->data = $options->get_options();
         }
         
