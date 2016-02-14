@@ -1,0 +1,3 @@
+var hello = 100;
+var world = 200;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNwLWFqYXguanMiLCJzcC1mcm9udC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQ0FBIiwiZmlsZSI6InN6LXB1YmxpYy5qcyIsInNvdXJjZXNDb250ZW50IjpbInZhciBoZWxsbyA9IDEwMDsiLCJ2YXIgd29ybGQgPSAyMDA7Il0sInNvdXJjZVJvb3QiOiIvc291cmNlLyJ9

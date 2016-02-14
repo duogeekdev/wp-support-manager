@@ -1,0 +1,5 @@
+All file names in this folder should be same as shortcode name the file used for
+EXample; 
+
+[my_shortcode_name]
+file: my_shortcode_name.php

@@ -1,0 +1,46 @@
+body{
+    position: relative;
+}
+
+.sm_popup{
+    display: none;
+    z-index: 999999;
+    position: fixed
+}
+
+.sm_popup_padding{
+    padding: 20px;
+}
+
+.ui-sm-popup{
+    background: #fff;
+    border-radius: 15px;
+}
+
+.sm_popup_padding{
+    padding: 15px;
+    position: relative;
+}
+
+.sm_popup_close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.sm_overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba( 0, 0, 0, 0.7 );
+    z-index: 9999;
+}
+
+.smui-has-overlay #wpbody{
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}

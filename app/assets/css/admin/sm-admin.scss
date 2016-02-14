@@ -1,0 +1,47 @@
+$sucess-msg-color: green;
+
+.sz_wrap{
+    
+    position: relative;
+    
+    .saving_message{
+        position: fixed;
+        z-index: 9999;
+        right: -300px;
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 10px 15px;
+        text-align: center;
+        
+        img{
+            width: 208px;
+        }
+    }
+    
+    table{
+        tr{
+            td{
+                vertical-align: top
+            }
+        }
+    }
+    
+    .settings_save_sucess{
+        color: $sucess-msg-color;
+        font-size: 11px;
+        margin: 10px 0;
+    }
+    
+    .sz_logs{
+        width: 100%;
+        height: 400px;
+        background: #eee;
+        padding: 10px;
+        line-height: 175%;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+        overflow: hidden;
+        overflow-y: scroll;
+    }
+    
+}

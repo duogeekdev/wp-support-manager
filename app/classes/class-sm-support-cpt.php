@@ -1,0 +1,234 @@
+<?php
+
+if( ! defined( 'ABSPATH' ) ) die( 'Nice try!' );
+
+if( ! class_exists( 'SM_Support_CPT' ) ) {
+    /**
+     * Class SM_Support_CPT
+     *
+     * @since 1.0.0
+     */
+    class SM_Support_CPT extends SM_Custom_Post_Type{
+        
+        /**
+         * Post type slug
+         *
+         * @since 1.0.0
+         */
+        protected static $_POST_TYPE = SM_Config::SM_SUPPORT_POST_TYPE;
+        
+        /**
+         * Ticket Status
+         *
+         * @since 1.0.0
+         */
+        public $status = SM_Config::SM_TICKET_STATUS_ACTIVE;
+        
+        /**
+         * Internal status
+         *
+         * @since 1.0.0
+         */
+        public $internal = false;
+        
+        /**
+         * Class Constructor
+         *
+         * @since 1.0.0
+         */
+        public function __construct( $id = null ) {
+            parent::__construct( $id );
+            
+            if( $id != null ) {
+                $this->_prepare_meta();
+            }
+        }
+        
+        /**
+         * Get post type
+         *
+         * @since 1.0.0
+         */
+        static public function get_post_type() {
+            return self::$_POST_TYPE;
+        }
+        
+        /**
+         * Get post type args
+         *
+         * @since 1.0.0
+         */
+        static public function get_post_type_args() {
+            
+            $labels = array(
+                'name'               => _x( 'Tickets', 'post type general name', 'sm' ),
+                'singular_name'      => _x( 'Ticket', 'post type singular name', 'sm' ),
+                'menu_name'          => _x( 'Tickets', 'admin menu', 'sm' ),
+                'name_admin_bar'     => _x( 'Ticket', 'add new on admin bar', 'sm' ),
+                'add_new'            => _x( 'Add New', 'topic', 'sm' ),
+                'add_new_item'       => __( 'Add Ticket', 'sm' ),
+                'new_item'           => __( 'New Ticket', 'sm' ),
+                'edit_item'          => __( 'Edit Ticket', 'sm' ),
+                'view_item'          => __( 'View Ticket', 'sm' ),
+                'all_items'          => __( 'All Ticket', 'sm' ),
+                'search_items'       => __( 'Search Tickets', 'sm' ),
+                'parent_item_colon'  => __( 'Parent Tickets:', 'sm' ),
+                'not_found'          => __( 'No topics found.', 'sm' ),
+                'not_found_in_trash' => __( 'No topics found in Trash.', 'sm' )
+            );
+    
+            $args = array(
+                'labels'             => $labels,
+                'description'        => __( 'Description.', 'sm' ),
+                'public'             => true,
+                'publicly_queryable' => true,
+                'show_ui'            => true,
+                'show_in_menu'       => true,
+                'query_var'          => true,
+                'rewrite'            => array( 'slug' => self::get_post_type() ),
+                'capability_type'    => 'post',
+                'has_archive'        => true,
+                'hierarchical'       => false,
+                'menu_position'      => null,
+                'supports'           => array( 'title', 'editor', 'author' )
+            );
+    
+            $args = apply_filters(
+                        'sm_support_cpt_args',
+                        $args
+                    );
+            
+            return $args;
+
+        }
+        
+        /**
+         * Get support taxonomy args
+         *
+         * @since 1.0.0
+         */
+        static public function get_tax_args() {
+            
+            $labels = array(
+		'name'              => _x( 'Categories', 'taxonomy general name' ),
+		'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+		'search_items'      => __( 'Search Categories' ),
+		'all_items'         => __( 'All Categories' ),
+		'parent_item'       => __( 'Parent Category' ),
+		'parent_item_colon' => __( 'Parent Category:' ),
+		'edit_item'         => __( 'Edit Category' ),
+		'update_item'       => __( 'Update Category' ),
+		'add_new_item'      => __( 'Add New Category' ),
+		'new_item_name'     => __( 'New Category Name' ),
+		'menu_name'         => __( 'Support Category' ),
+            );
+    
+            $args = array(
+                'hierarchical'      => true,
+                'labels'            => $labels,
+                'show_ui'           => true,
+                'show_admin_column' => true,
+                'query_var'         => true,
+                'rewrite'           => array( 'slug' => SM_Config::SM_SUPPORT_TAXONOMY ),
+            );
+            
+            $args = apply_filters(
+                        'sm_support_tax_args',
+                        $args
+                    );
+            
+            return $args;
+            
+        }
+        
+        /**
+         * Get status list
+         *
+         * @since 1.0.0
+         */
+        static public function get_status_list() {
+            
+            return apply_filters(
+                        'sm_ticket_status_list',
+                        array(
+                            SM_Config::SM_TICKET_STATUS_ACTIVE,
+                            SM_Config::SM_TICKET_STATUS_INACTIVE,
+                            SM_Config::SM_TICKET_STATUS_CLOSED,
+                            SM_Config::SM_TICKET_STATUS_RESOLVED
+                        )
+                    );
+            
+        }
+        
+        /**
+         * Render meta box
+         *
+         * @since 1.0.0
+         */
+        public function render_ticket_meta() {
+            
+            $statuses = self::get_status_list();
+            
+            wp_nonce_field( SM_Settings::SETTINGS_NONCE, '_wpnonce' );
+            ?>
+            <table cellpadding="5" cellspacing="5">
+                <tr>
+                    <td><?php _e( 'Status:', 'sm' ) ?></td>
+                    <td>
+                        <select name="sm_ticket_meta[status]">
+                            <option value=""><?php _e( 'Set a status' ); ?></option>
+                            <?php foreach( $statuses as $status ) { ?>
+                            <option <?php echo $this->status == $status ? 'selected' : '' ?> value="<?php echo $status ?>"><?php echo ucfirst( $status ) ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><?php _e( 'Internal', 'sm' ) ?></td>
+                    <td>
+                        <label>
+                            <input <?php echo $this->internal ? 'checked' : '' ?> type="radio" name="sm_ticket_meta[internal]" value="true"> <?php _e( 'Yes', 'sm' ) ?>
+                        </label>
+                        <label>
+                            <input <?php echo ! $this->internal ? 'checked' : '' ?> type="radio" name="sm_ticket_meta[internal]" value="false"> <?php _e( 'No', 'sm' ) ?>
+                        </label>
+                    </td>
+                </tr>
+            </table>
+            <?php
+            
+        }
+        
+        /**
+         * Get post by ID
+         *
+         * @since 1.0.0
+         */
+        public function get_post() {
+            $post = get_post( $this->ID );
+            
+            return apply_filters(
+                    'sm_support_get_post',
+                    $post,
+                    $this
+                );
+        }
+        
+        /**
+         * Prepare meta
+         *
+         * @since 1.0.0
+         */
+        private function _prepare_meta() {
+            $post = $this->get_post();
+            $fields = get_class_vars( __CLASS__ );
+            
+            foreach( $fields as $field => $val ) {
+                if( property_exists( $this, $field ) && isset( $post->$field ) ){
+                    $this->$field = $post->$field;
+                }
+            }
+        }
+        
+    }
+}
