@@ -1,4 +1,0 @@
-<?php
-/**
- * Code is poetry.
- */
