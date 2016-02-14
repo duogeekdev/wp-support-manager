@@ -2,3 +2,6 @@
 node_modules
 sm-error.log
 releases
+._*
+Thumbs.db
+Desktop.ini

@@ -78,10 +78,10 @@ if( ! class_exists( 'SM_Plugin' ) ) {
         public function register_scripts_front_end() {
             
             $suffix = '';
-            if(
+            if( !(
                defined( 'WP_DEBUG' ) && WP_DEBUG &&
                defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
-            ) {
+            ) ){
                 $suffix = '.min';
             }
             
@@ -106,10 +106,10 @@ if( ! class_exists( 'SM_Plugin' ) ) {
         public function register_scripts_admin_end() {
             
             $suffix = '';
-            if(
+            if( !(
                defined( 'WP_DEBUG' ) && WP_DEBUG &&
                defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG
-            ) {
+            ) ){
                 $suffix = '.min';
             }
             
