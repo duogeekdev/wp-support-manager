@@ -58,7 +58,6 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
 				 }
 				 				 
 				 if( ! $error ){
-					$current_user = SM_Loader::Load( 'SM_User', get_current_user_id() );               
 					
 					$ticket = SM_Loader::Load( 'SM_Ticket_CPT' );
 					$ticket->post_title = trim( $_REQUEST['ticket_title'] );
@@ -70,7 +69,7 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
 					$response['msg' ] =  __( 'New ticket has been created successfully', 'sm' );
 					$response['ticket_id'] = intval($ticket->ID);
 			  
-					if( isset($_REQUEST['redir']) ) $response['redir']=$_REQUEST['redir'];
+					$response['redir'] = get_permalink( $ticket->ID );
 				}
             }
            echo json_encode($response); exit();

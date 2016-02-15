@@ -177,10 +177,8 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             $post = array(
                 'post_author' => $this->post_author,
                 'post_content' => $this->post_content,
-                'post_excerpt' => $this->post_excerpt,
-                'post_name' => sanitize_text_field( $this->slug ),
                 'post_status' => $this->post_status,
-                'post_title' => sanitize_title( ! empty( $this->post_title ) ? $this->post_title : $this->post_title ),
+                'post_title' => ! empty( $this->post_title ) ? $this->post_title : '',
                 'post_type' => $this->get_post_type(),
                 'post_modified' => $this->post_modified,
             );
@@ -193,7 +191,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
                 $post[ 'ID' ] = $this->ID;
                 wp_update_post( $post );
             }
-            self::save_meta_data();
+            //self::save_meta_data();
             
             wp_cache_set( $this->ID, $this, $class );
             

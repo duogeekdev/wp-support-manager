@@ -85,7 +85,7 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
                 'show_ui'            => true,
                 'show_in_menu'       => true,
                 'query_var'          => true,
-                'rewrite'            => array( 'slug' => self::get_post_type() ),
+                'rewrite'            => array( 'slug' => 'ticket' ),
                 'capability_type'    => 'post',
                 'has_archive'        => true,
                 'hierarchical'       => false,
