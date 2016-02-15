@@ -11,9 +11,9 @@ if( ! class_exists( 'SM_Config' ) ) {
      */
     class SM_Config{
         
-        const SM_SUPPORT_POST_TYPE = 'sm-ticket';
+        const SM_TICKET_POST_TYPE = 'sm-ticket';
         const SM_REPLY_POST_TYPE = 'sm-reply';
-        const SM_SUPPORT_TAXONOMY = 'sm-support-categories';
+        const SM_TICKET_TAXONOMY = 'sm-support-categories';
         
         const SM_TICKET_STATUS_ACTIVE = 'active';
         const SM_TICKET_STATUS_INACTIVE = 'inactive';

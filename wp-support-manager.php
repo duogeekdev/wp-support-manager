@@ -152,14 +152,14 @@ if( ! class_exists( 'SM_Plugin' ) ) {
     
     SM_Loader::Create( 'SM_Plugin' );
     
-    //SM_Loader::Load( 'SM_Support_CPT', 2468 );
+    //SM_Loader::Load( 'SM_Ticket_CPT', 2468 );
     
     
     
     
     
     
-    //$y = SM_Loader::Load( 'SM_Support_CPT' );
+    //$y = SM_Loader::Load( 'SM_Ticket_CPT' );
     //$y = new SM_Reply_CPT();
     
     

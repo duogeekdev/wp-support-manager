@@ -55,7 +55,7 @@ if( ! class_exists( 'SM_Utility' ) ) {
          */
         static private function _get_post_types_and_agrs() {
             self::$_post_types = array(
-                                    SM_Config::SM_SUPPORT_POST_TYPE         => SM_Support_CPT::get_post_type_args(),
+                                    SM_Config::SM_TICKET_POST_TYPE         => SM_Ticket_CPT::get_post_type_args(),
                                     SM_Config::SM_REPLY_POST_TYPE           => SM_Reply_CPT::get_post_type_args()
                                 );
             
@@ -72,9 +72,9 @@ if( ! class_exists( 'SM_Utility' ) ) {
          */
         static private function _get_tax_and_agrs() {
             self::$_post_types = array(
-                                    SM_Config::SM_SUPPORT_TAXONOMY         => array(
-                                                                                SM_Config::SM_SUPPORT_POST_TYPE,
-                                                                                SM_Support_CPT::get_tax_args()
+                                    SM_Config::SM_TICKET_TAXONOMY         => array(
+                                                                                SM_Config::SM_TICKET_POST_TYPE,
+                                                                                SM_Ticket_CPT::get_tax_args()
                                                                             )
                                 );
             
@@ -118,12 +118,12 @@ if( ! class_exists( 'SM_Utility' ) ) {
          * @since 1.0.0
          */
         static public function support_meta_boxes() {
-            $SM_Support_CPT = SM_Loader::Load( 'SM_Support_CPT' );
+            $SM_Ticket_CPT = SM_Loader::Load( 'SM_Ticket_CPT' );
             add_meta_box( 
                 'ticket-meta-box',
                 __( 'Ticket Inormation' ),
-                array( $SM_Support_CPT, 'render_ticket_meta' ),
-                SM_Config::SM_SUPPORT_POST_TYPE,
+                array( $SM_Ticket_CPT, 'render_ticket_meta' ),
+                SM_Config::SM_TICKET_POST_TYPE,
                 'side',
                 'high'
             );

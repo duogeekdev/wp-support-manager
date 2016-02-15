@@ -2,20 +2,20 @@
 
 if( ! defined( 'ABSPATH' ) ) die( 'Nice try!' );
 
-if( ! class_exists( 'SM_Support_CPT' ) ) {
+if( ! class_exists( 'SM_Ticket_CPT' ) ) {
     /**
-     * Class SM_Support_CPT
+     * Class SM_Ticket_CPT
      *
      * @since 1.0.0
      */
-    class SM_Support_CPT extends SM_Custom_Post_Type{
+    class SM_Ticket_CPT extends SM_Custom_Post_Type{
         
         /**
          * Post type slug
          *
          * @since 1.0.0
          */
-        protected static $_POST_TYPE = SM_Config::SM_SUPPORT_POST_TYPE;
+        protected static $_POST_TYPE = SM_Config::SM_TICKET_POST_TYPE;
         
         /**
          * Ticket Status
@@ -94,7 +94,7 @@ if( ! class_exists( 'SM_Support_CPT' ) ) {
             );
     
             $args = apply_filters(
-                        'sm_support_cpt_args',
+                        'sm_ticket_cpt_args',
                         $args
                     );
             
@@ -129,7 +129,7 @@ if( ! class_exists( 'SM_Support_CPT' ) ) {
                 'show_ui'           => true,
                 'show_admin_column' => true,
                 'query_var'         => true,
-                'rewrite'           => array( 'slug' => SM_Config::SM_SUPPORT_TAXONOMY ),
+                'rewrite'           => array( 'slug' => SM_Config::SM_TICKET_TAXONOMY ),
             );
             
             $args = apply_filters(

@@ -4,7 +4,7 @@ if( ! defined( 'ABSPATH' ) ) die( 'Nice try!' );
 
 if( ! class_exists( 'SM_Reply_CPT' ) ) {
     /**
-     * Class SM_Support_CPT
+     * Class SM_Ticket_CPT
      *
      * @since 1.0.0
      */

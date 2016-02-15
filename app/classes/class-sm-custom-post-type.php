@@ -176,8 +176,8 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             
             $post = array(
                 'post_author' => $this->post_author,
-                'post_content' => $this->description,
-                'post_excerpt' => $this->description,
+                'post_content' => $this->post_content,
+                'post_excerpt' => $this->post_excerpt,
                 'post_name' => sanitize_text_field( $this->slug ),
                 'post_status' => $this->post_status,
                 'post_title' => sanitize_title( ! empty( $this->post_title ) ? $this->post_title : $this->post_title ),
