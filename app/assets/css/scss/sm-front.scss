@@ -18,3 +18,11 @@ $labelLineHeight: 175%;
         border-radius: 5px;
     }
 }
+.sm_form_overaly{
+	display:block;
+	position: absolute;
+	background:#444444;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; // IE8
+	filter: alpha(opacity=50); // IE 5-7
+	opacity: 0.5;
+}

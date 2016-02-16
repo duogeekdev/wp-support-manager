@@ -110,17 +110,17 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
         static public function get_tax_args() {
             
             $labels = array(
-		'name'              => _x( 'Categories', 'taxonomy general name' ),
-		'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
-		'search_items'      => __( 'Search Categories' ),
-		'all_items'         => __( 'All Categories' ),
-		'parent_item'       => __( 'Parent Category' ),
-		'parent_item_colon' => __( 'Parent Category:' ),
-		'edit_item'         => __( 'Edit Category' ),
-		'update_item'       => __( 'Update Category' ),
-		'add_new_item'      => __( 'Add New Category' ),
-		'new_item_name'     => __( 'New Category Name' ),
-		'menu_name'         => __( 'Support Category' ),
+        'name'              => _x( 'Categories', 'taxonomy general name' ),
+        'singular_name'     => _x( 'Category', 'taxonomy singular name' ),
+        'search_items'      => __( 'Search Categories' ),
+        'all_items'         => __( 'All Categories' ),
+        'parent_item'       => __( 'Parent Category' ),
+        'parent_item_colon' => __( 'Parent Category:' ),
+        'edit_item'         => __( 'Edit Category' ),
+        'update_item'       => __( 'Update Category' ),
+        'add_new_item'      => __( 'Add New Category' ),
+        'new_item_name'     => __( 'New Category Name' ),
+        'menu_name'         => __( 'Support Category' ),
             );
     
             $args = array(
@@ -176,7 +176,7 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
                     <td><?php _e( 'Status:', 'sm' ) ?></td>
                     <td>
                         <select name="sm_ticket_meta[status]">
-                            <option value=""><?php _e( 'Set a status' ); ?></option>
+                            <option value=""><?php _e( 'Set a status' , 'sm' ); ?></option>
                             <?php foreach( $statuses as $status ) { ?>
                             <option <?php echo $this->status == $status ? 'selected' : '' ?> value="<?php echo $status ?>"><?php echo ucfirst( $status ) ?></option>
                             <?php } ?>

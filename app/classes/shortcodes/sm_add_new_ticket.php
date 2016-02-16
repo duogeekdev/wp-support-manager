@@ -7,9 +7,9 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
      * ShortCode class SM_all_tickets
      */
    
-	class SC_sm_add_new_ticket{
-	
-		const AJAX_ACTION = "sm_add_new_ticket";
+    class SC_sm_add_new_ticket{
+    
+        const AJAX_ACTION = "sm_add_new_ticket";
         
         public function __construct() {
              add_action( 'wp_ajax_' . self::AJAX_ACTION, array( &$this, 'save_new_ticket' ) );
@@ -29,52 +29,52 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
             return $output;
             
         }
-		
-		/**
-		 * Handle ajax request, Create new ticket and return ajax response
-		 */
-		
-		public function save_new_ticket(){
-			   $response = array();
-			
-			if( ! SM_Helper::check_nonce() ) {
-			
+        
+        /**
+         * Handle ajax request, Create new ticket and return ajax response
+         */
+        
+        public function save_new_ticket(){
+               $response = array();
+            
+            if( ! SM_Helper::check_nonce() ) {
+            
                     $response['status'] = 'error';
                     $response['msg'] = __( 'You don\'t have permission to save', 'sm' );
-					
+                    
             }else{
-				 
-				 $error = false;
-				 if( !isset( $_REQUEST['ticket_title'] ) && "" != trim( $_REQUEST['ticket_title'] )  ){
-				 	$error = true;
-					$response['status'] = 'error';
-					$response['msg' ] =  __( 'Ticket title required', 'sm' );
-				 }
-				 
-				 if( !isset( $_REQUEST['ticket_content'] ) && "" != trim( $_REQUEST['ticket_content'] )  ){
-				 	$error = true;
-					$response['status'] = 'error';
-					$response['msg' ] =  __( 'Ticket content required', 'sm' );
-				 }
-				 				 
-				 if( ! $error ){
-					
-					$ticket = SM_Loader::Load( 'SM_Ticket_CPT' );
-					$ticket->post_title = trim( $_REQUEST['ticket_title'] );
-					$ticket->post_content = trim( $_REQUEST['ticket_content'] );
-					
-					$ticket->save();
-					
-					$response['status'] = 'success';
-					$response['msg' ] =  __( 'New ticket has been created successfully', 'sm' );
-					$response['ticket_id'] = intval($ticket->ID);
-			  
-					$response['redir'] = get_permalink( $ticket->ID );
-				}
+                 
+                 $error = false;
+                 if( !isset( $_REQUEST['ticket_title'] ) && "" != trim( $_REQUEST['ticket_title'] )  ){
+                     $error = true;
+                    $response['status'] = 'error';
+                    $response['msg' ] =  __( 'Ticket title required', 'sm' );
+                 }
+                 
+                 if( !isset( $_REQUEST['ticket_content'] ) && "" != trim( $_REQUEST['ticket_content'] )  ){
+                     $error = true;
+                    $response['status'] = 'error';
+                    $response['msg' ] =  __( 'Ticket content required', 'sm' );
+                 }
+                                  
+                 if( ! $error ){
+                    
+                    $ticket = SM_Loader::Load( 'SM_Ticket_CPT' );
+                    $ticket->post_title = trim( $_REQUEST['ticket_title'] );
+                    $ticket->post_content = trim( $_REQUEST['ticket_content'] );
+                    
+                    $ticket->save();
+                    
+                    $response['status'] = 'success';
+                    $response['msg' ] =  __( 'New ticket has been created successfully', 'sm' );
+                    $response['ticket_id'] = intval($ticket->ID);
+              
+                    $response['redir'] = get_permalink( $ticket->ID );
+                }
             }
            echo json_encode($response); exit();
-		   
-		}//end func
+           
+        }//end func
         
     }//end calss
 }

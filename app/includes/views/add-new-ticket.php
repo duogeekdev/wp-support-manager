@@ -1,6 +1,7 @@
 <form action="" method="post">
+    <?php SM_Helper::form_overlay() ?>
     <input  name="action" type="hidden" value="<?php echo SC_sm_add_new_ticket::AJAX_ACTION;?>" />
-	<input type="hidden" name="redir" value="<?php bloginfo('url');?>" />
+    <input type="hidden" name="redir" value="<?php bloginfo('url');?>" />
     <?php wp_nonce_field( SM_Settings::SETTINGS_NONCE, '_wpnonce' ); ?>
     <?php do_action( 'sm_add_new_ticket_form_top' ); ?>
     
@@ -19,7 +20,7 @@
     </div>
     <?php do_action( 'sm_add_new_ticket_form_bottom' ); ?>
     
-	<div class="sm_form">
+    <div class="sm_form">
         <input type="button" class="sm_save_ajax_form" value="<?php _e( 'Submit', 'sm' ) ?>">
     </div>
     

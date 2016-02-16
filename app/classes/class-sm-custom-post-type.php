@@ -1,4 +1,9 @@
-<?php
+<?php 
+/*
+    test
+    hello
+        Sublime    
+*/
 
 if( ! defined( 'ABSPATH' ) ) die( 'Nice try!' );
 
@@ -126,40 +131,40 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         }
         
         /**
-	 * Called before saving data.
-	 *
-	 * @since  1.0.0
-	 */
-	public function before_save() {
-	    do_action( 'sm_cpt_before_save_' . $this->get_post_type(), $this );
-	}
+     * Called before saving data.
+     *
+     * @since  1.0.0
+     */
+    public function before_save() {
+        do_action( 'sm_cpt_before_save_' . $this->get_post_type(), $this );
+    }
         
         /**
-	 * Called after saving data.
-	 *
-	 * @since  1.0.0
-	 */
-	public function after_save() {
-	    do_action( 'sm_cpt_after_save_' . $this->get_post_type(), $this );
-	}
+     * Called after saving data.
+     *
+     * @since  1.0.0
+     */
+    public function after_save() {
+        do_action( 'sm_cpt_after_save_' . $this->get_post_type(), $this );
+    }
         
         /**
-	 * Called before delete data.
-	 *
-	 * @since  1.0.0
-	 */
-	public function before_delete() {
-	    do_action( 'sm_cpt_before_delete_' . $this->get_post_type(), $this );
-	}
+     * Called before delete data.
+     *
+     * @since  1.0.0
+     */
+    public function before_delete() {
+        do_action( 'sm_cpt_before_delete_' . $this->get_post_type(), $this );
+    }
         
         /**
-	 * Called after delete data.
-	 *
-	 * @since  1.0.0
-	 */
-	public function after_delete() {
-	    do_action( 'sm_cpt_after_delete_' . $this->get_post_type(), $this );
-	}
+     * Called after delete data.
+     *
+     * @since  1.0.0
+     */
+    public function after_delete() {
+        do_action( 'sm_cpt_after_delete_' . $this->get_post_type(), $this );
+    }
         
         /**
          * Save the post
@@ -288,8 +293,8 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
                 delete_post_meta( $this->id, $key );
             }
             
-	}
-        
+    }
+            
         
         
     }

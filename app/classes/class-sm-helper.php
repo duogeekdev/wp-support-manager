@@ -41,19 +41,19 @@ if( ! class_exists( 'SM_Helper' ) ) {
         }
         
         /**
-	 * Checks if the provided value evaluates to a boolean TRUE.
-	 *
-	 * Following values are considered true:
-	 *  - Boolean: true
-	 *  - Number: anything except 0
-	 *  - Strings: true, yes, on (case insensitive)
-	 *
-	 * @since  1.0.0
-	 *
-	 * @param  mixed $value A value that will be evaluated as a boolean.
-	 * @return bool True if the specified $value evaluated to TRUE.
-	 */
-	static public function is_true( $value ) {
+     * Checks if the provided value evaluates to a boolean TRUE.
+     *
+     * Following values are considered true:
+     *  - Boolean: true
+     *  - Number: anything except 0
+     *  - Strings: true, yes, on (case insensitive)
+     *
+     * @since  1.0.0
+     *
+     * @param  mixed $value A value that will be evaluated as a boolean.
+     * @return bool True if the specified $value evaluated to TRUE.
+     */
+    static public function is_true( $value ) {
             if ( false === $value || null === $value || '' === $value ) {
                 return false;
             } elseif ( true === $value ) {
@@ -69,18 +69,18 @@ if( ! class_exists( 'SM_Helper' ) ) {
                 );
             }
             return false;
-	}
+    }
 
-	/**
-	 * Opposite of the is_true() function.
-	 *
-	 * @since  1.0.0
-	 * @param  mixed $value A value that will be evaluated as a boolean
-	 * @return bool True if the speciefied value evals as FALSE
-	 */
-	static public function is_false( $value ) {
-	    return ! self::is_true( $value );
-	}
+    /**
+     * Opposite of the is_true() function.
+     *
+     * @since  1.0.0
+     * @param  mixed $value A value that will be evaluated as a boolean
+     * @return bool True if the speciefied value evals as FALSE
+     */
+    static public function is_false( $value ) {
+        return ! self::is_true( $value );
+    }
         
         /**
          * Dump anything
@@ -162,7 +162,7 @@ if( ! class_exists( 'SM_Helper' ) ) {
             }
             
         }
-        
+         
         /**
          * Find correct template
          */
@@ -189,6 +189,12 @@ if( ! class_exists( 'SM_Helper' ) ) {
                 );
             }
             
+        }
+        
+        static public function form_overlay(){
+            ?>
+            <div class="sm_form_overaly"><img src="<?php echo SM_FILES_URI . '/assets/images/loadingAnimation.gif' ?>"></div>
+            <?php 
         }
         
     }
