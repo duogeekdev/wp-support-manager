@@ -111,6 +111,14 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         public $_ignore_fields = array();
         
         /**
+         *Post taxonomy terms
+         *@example_value: array( "taxonomy_name1"=>array( teram_id_1, 2, 3...), "taxonomy_name2"=>array('term_slug_1', "slug2".....) );
+         */
+        public $post_terms = array();
+         
+        
+        
+        /**
          * Contructor
          *
          * @since 1.0.0
@@ -196,6 +204,9 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
                 $post[ 'ID' ] = $this->ID;
                 wp_update_post( $post );
             }
+            
+            $this->save_post_terms();
+            
             //self::save_meta_data();
             
             wp_cache_set( $this->ID, $this, $class );
@@ -243,6 +254,20 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             }
             
         }
+        
+        /**
+         * Save Post Terams
+         *
+         */
+         public function save_post_terms(){
+             
+            if( ! $this->ID ) return ;
+            foreach( $this->post_terms as $taxonomy => $terms ){
+                wp_set_post_terms( $this->ID, $terms, $taxonomy );
+            }
+            
+         }
+         
         
         /**
          * Delete a post

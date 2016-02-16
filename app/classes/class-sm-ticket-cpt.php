@@ -120,7 +120,7 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
         'update_item'       => __( 'Update Category' ),
         'add_new_item'      => __( 'Add New Category' ),
         'new_item_name'     => __( 'New Category Name' ),
-        'menu_name'         => __( 'Support Category' ),
+        'menu_name'         => __( 'Ticket Category' ),
             );
     
             $args = array(

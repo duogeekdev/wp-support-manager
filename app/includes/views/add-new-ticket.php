@@ -8,7 +8,10 @@
         <label for="title"><?php _e( 'Ticket title', 'sm' ) ?></label>
         <input  class="sm_input" type="text" id="ticket_title"  name="ticket_title" value="">
     </div>
-    
+    <div class="sm_form">
+        <label for="title"><?php _e( 'Ticket Category', 'sm' ) ?></label>
+        <?php SM_Helper::terms_dropdown( SM_Config::SM_TICKET_TAXONOMY , array( 'name'=>'ticket_category' ) ); ?>
+    </div>
     <div class="sm_form">
         <label for="title"><?php _e( 'Ticket details', 'sm' ) ?></label>
         <?php

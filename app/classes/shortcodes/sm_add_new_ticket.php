@@ -31,12 +31,16 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
         }
         
         /**
+         *
+         */
+        
+        /**
          * Handle ajax request, Create new ticket and return ajax response
          */
         
         public function save_new_ticket(){
                $response = array();
-            
+            write_log($_REQUEST);
             if( ! SM_Helper::check_nonce() ) {
             
                     $response['status'] = 'error';
@@ -45,23 +49,30 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
             }else{
                  
                  $error = false;
-                 if( !isset( $_REQUEST['ticket_title'] ) && "" != trim( $_REQUEST['ticket_title'] )  ){
-                     $error = true;
+                 if( !isset( $_REQUEST['ticket_title'] ) || "" == trim( $_REQUEST['ticket_title'] )  ){
+                    $error = true;
                     $response['status'] = 'error';
                     $response['msg' ] =  __( 'Ticket title required', 'sm' );
                  }
                  
-                 if( !isset( $_REQUEST['ticket_content'] ) && "" != trim( $_REQUEST['ticket_content'] )  ){
-                     $error = true;
+                 if( !isset( $_REQUEST['ticket_content'] ) || "" == trim( $_REQUEST['ticket_content'] )  ){
+                    $error = true;
                     $response['status'] = 'error';
                     $response['msg' ] =  __( 'Ticket content required', 'sm' );
                  }
                                   
                  if( ! $error ){
                     
+                    $ticket_category = isset( $_REQUEST['ticket_category'] ) ? $_REQUEST['ticket_category'] : 0;
+                     
+                      
                     $ticket = SM_Loader::Load( 'SM_Ticket_CPT' );
                     $ticket->post_title = trim( $_REQUEST['ticket_title'] );
                     $ticket->post_content = trim( $_REQUEST['ticket_content'] );
+                    
+                    if( $ticket_category ){
+                        $ticket->post_terms = array( SM_Config::SM_TICKET_TAXONOMY => array( $ticket_category )  );
+                    }
                     
                     $ticket->save();
                     

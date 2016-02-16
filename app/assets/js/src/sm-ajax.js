@@ -27,19 +27,21 @@
                 //var overlay_html = '<div class = "sm_form_overlay" style="background:#cccccc; height:200px; position:absolute;">loadig....</div>';
                 //$(this.form).prepend(overlay_html);
                 this.loading(1);
+                var THIS = this;
                 $.ajax({
                    type: "POST",
                    url: this.adminAjax,
                    data: $(this.form).serialize(), // serializes the form's elements.
                    success: function(json_result)
                    {
+                      THIS.loading(0);
                        var response=jQuery.parseJSON( json_result )
+                       
                        if( response.status == "success" )
                        {
-                          alert(response.redir); 
                           if( response.redir !='undefined' )
                           {
-                             // document.location.href = response.redir;
+                              document.location.href = response.redir;
                           }
                        }
                        else
@@ -72,7 +74,7 @@
     };//end SM_Ajax_Form
  
  
- 
+    
  
     jQuery(document).ready( function( $ ) {
                 
