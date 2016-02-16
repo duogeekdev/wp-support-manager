@@ -24,8 +24,9 @@
                 
         save : function(){
                 
-                var overlay_html = '<div class = "sm_form_overlay" style="background:#cccccc; height:200px; position:absolute;">loadig....</div>';
-                $(this.form).prepend(overlay_html);
+                //var overlay_html = '<div class = "sm_form_overlay" style="background:#cccccc; height:200px; position:absolute;">loadig....</div>';
+                //$(this.form).prepend(overlay_html);
+                this.loading(1);
                 $.ajax({
                    type: "POST",
                    url: this.adminAjax,
@@ -37,7 +38,9 @@
                        {
                           alert(response.redir); 
                           if( response.redir !='undefined' )
-                              document.location.href = response.redir;
+                          {
+                             // document.location.href = response.redir;
+                          }
                        }
                        else
                        {
@@ -47,6 +50,24 @@
                  });
             
             },//end save
+            
+            loading : function(start) {
+                // add the overlay with loading image to the page
+                if( start == 1)
+                {
+                    var over = '<div class="sm_form_overlay">' +
+                        '<img class="sm_form_loading" src="'+SupportManager.assets+'/images/loadingAnimation.gif">' +
+                        '</div>'; 
+                    $(over).appendTo(this.form);
+                }
+                else
+                {
+                    $('.sm_form_overlay').remove();    
+                }
+            }//end loading            
+            
+            
+            
        
     };//end SM_Ajax_Form
  

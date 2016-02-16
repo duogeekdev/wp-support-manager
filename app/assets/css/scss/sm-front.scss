@@ -18,11 +18,22 @@ $labelLineHeight: 175%;
         border-radius: 5px;
     }
 }
-.sm_form_overaly{
-	display:block;
-	position: absolute;
-	background:#444444;
-	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; // IE8
-	filter: alpha(opacity=50); // IE 5-7
-	opacity: 0.5;
+
+.sm_form_overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #444;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+}
+.sm_form_loading {
+    width: 300px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -28px 0 0 -25px;
 }

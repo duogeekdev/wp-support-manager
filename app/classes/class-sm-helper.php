@@ -191,12 +191,6 @@ if( ! class_exists( 'SM_Helper' ) ) {
             
         }
         
-        static public function form_overlay(){
-            ?>
-            <div class="sm_form_overaly"><img src="<?php echo SM_FILES_URI . '/assets/images/loadingAnimation.gif' ?>"></div>
-            <?php 
-        }
-        
-    }
+    }//end class
     
 }

@@ -1,5 +1,4 @@
 <form action="" method="post">
-    <?php SM_Helper::form_overlay() ?>
     <input  name="action" type="hidden" value="<?php echo SC_sm_add_new_ticket::AJAX_ACTION;?>" />
     <input type="hidden" name="redir" value="<?php bloginfo('url');?>" />
     <?php wp_nonce_field( SM_Settings::SETTINGS_NONCE, '_wpnonce' ); ?>
