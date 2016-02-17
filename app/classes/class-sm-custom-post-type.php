@@ -1,9 +1,4 @@
 <?php 
-/*
-    test
-    hello
-        Sublime    
-*/
 
 if( ! defined( 'ABSPATH' ) ) die( 'Nice try!' );
 
@@ -15,12 +10,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
      * @since 1.0.0
      */
     class SM_Custom_Post_Type{
-        
-        const STATUS_OPEN = 'open';
-        const STATUS_PROCESSING = 'procesing';
-        const STATUS_RESOLVED = 'resolved';
-        const STATUS_CLOSED = 'closed';
-        
+            
         /**
          * Post type slug
          *
@@ -83,13 +73,6 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          * @since 1.0.0
          */
         public $post_status ='publish' ;
-        
-        /**
-         * Status
-         *
-         * @since 1.0.0
-         */
-        public $status = self::STATUS_OPEN;
         
         /**
          * Is internal?

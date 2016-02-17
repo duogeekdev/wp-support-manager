@@ -40,7 +40,7 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
         
         public function save_new_ticket(){
                $response = array();
-            write_log($_REQUEST);
+            //write_log($_REQUEST);
             if( ! SM_Helper::check_nonce() ) {
             
                     $response['status'] = 'error';
