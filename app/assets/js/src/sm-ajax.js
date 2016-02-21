@@ -29,7 +29,7 @@
                 this.loading(1);
                 var THIS = this;
                 $.ajax({
-                   type: "POST",
+                    type: "POST",
                    url: this.adminAjax,
                    data: $(this.form).serialize(), // serializes the form's elements.
                    success: function(json_result)
@@ -41,7 +41,7 @@
                        {
                           if( response.redir !='undefined' )
                           {
-                              document.location.href = response.redir;
+                              //document.location.href = response.redir;
                           }
                        }
                        else

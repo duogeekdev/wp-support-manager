@@ -32,6 +32,13 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
         public $internal = false;
         
         /**
+         * Priority status
+         *
+         * @since 1.0.0
+         */
+        public $priority = false;
+        
+        /**
          * Class Constructor
          *
          * @since 1.0.0
@@ -161,6 +168,47 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
         }
         
         /**
+         * Get priority list
+         *
+         * @since 1.0.0
+         */
+        static public function get_priority_list() {
+            
+            return apply_filters(
+                        'sm_ticket_priority_list',
+                        array(
+                            SM_Config::SM_TICKET_PRIORITY_LOW,
+                            SM_Config::SM_TICKET_PRIORITY_MEDIUM,
+                            SM_Config::SM_TICKET_PRIORITY_HIGH,
+                            SM_Config::SM_TICKET_PRIORITY_CRITICAL
+                        )
+                    );
+            
+        }
+        
+        /**
+         * Get priority dropdown
+         *
+         * @since 1.0.0
+         */
+        static public function get_priority_dropdown() {
+            
+            $data = array();
+            $priorities = self::get_priority_list();
+            foreach( $priorities as $priority ) {
+                $data[$priority] = ucfirst( $priority );
+            }
+            
+            $data = apply_filters(
+                'sm_ticket_priority_dropdown',
+                $data
+            );
+            
+            return SM_Helper::get_dropdown( $data, 'ticket_priority' );
+            
+        }
+        
+        /**
          * Render meta box
          *
          * @since 1.0.0
@@ -225,7 +273,7 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
             
             foreach( $fields as $field => $val ) {
                 if( property_exists( $this, $field ) && isset( $post->$field ) ){
-                    $this->$field = $post->$field;
+                    //$this->$field = $post->$field;
                 }
             }
         }

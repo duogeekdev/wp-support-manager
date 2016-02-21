@@ -16,7 +16,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          *
          * @since 1.0.0
          */
-        protected static $_POST_TYPE = 'dsd';
+        protected static $_POST_TYPE = '';
         
         /**
          * ID of this post type
@@ -75,13 +75,6 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         public $post_status ='publish' ;
         
         /**
-         * Is internal?
-         *
-         * @since 1.0.0
-         */
-        public $internal = false;
-        
-        /**
          * Custom data
          *
          * @since 1.0.0
@@ -114,10 +107,12 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             
             $this->_ignore_fields = array(
                                         'post_title',
-                                        'post_content'
+                                        'post_content',
+                                        '_POST_TYPE'
                                     );
             
-            //$this->prepare_meta();
+            $this->prepare_post();
+            $this->prepare_meta();
             
         }
         
@@ -190,7 +185,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             
             $this->save_post_terms();
             
-            //self::save_meta_data();
+            $this->save_meta_data();
             
             wp_cache_set( $this->ID, $this, $class );
             
@@ -219,23 +214,59 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         }
         
         /**
-         * Prepare meta
+         * Save meta dat
          *
          * @since 1.0.0
          */
-        static public function save_meta_data() {
+        public function save_meta_data( $class = null ) {
+            
+            if( $class == null ) {
+                $class = $this;
+            }
             
             $data = array();
-            $fields = get_class_vars( get_class( $model ) );
+            $fields = get_class_vars( get_class( $this ) );
             
             $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
             
             foreach( $fields as $meta => $val ) {
                 if( ! in_array( $meta, $this->_ignore_fields ) ) {
-                    update_post_meta( $this->ID, $meta, $val );
+                    update_post_meta( $this->ID, $meta, $this->$meta );
                 }
             }
             
+        }
+        
+        /**
+         * Prepare post data
+         *
+         * @since 1.0.0
+         */
+        public function prepare_post() {
+            $post = get_post( $this->ID );
+            $fields = get_class_vars( get_class( $this ) );
+            $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
+            foreach( $fields as $meta => $val ) {
+                if( property_exists( $this, $meta ) && isset( $post->$meta ) ) {
+                    $this->$meta = $post->$meta;
+                }
+            }
+        }
+        
+        /**
+         * Prepare meta data
+         *
+         * @since 1.0.0
+         */
+        public function prepare_meta() {
+            $fields = get_class_vars( get_class( $this ) );
+            $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
+            
+            foreach( $fields as $meta => $val ) {
+                if( ! in_array( $meta, $this->_ignore_fields ) ) {
+                    $this->$meta = get_post_meta( $this->ID, $meta, true );
+                }
+            }
         }
         
         /**

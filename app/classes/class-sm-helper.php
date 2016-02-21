@@ -194,10 +194,10 @@ if( ! class_exists( 'SM_Helper' ) ) {
         /**
          *Dropdown HTML <select> for post terms
          */
-        static public function terms_dropdown($taxonomy , $args = array()){
+        static public function terms_dropdown( $taxonomy , $args = array() ){
                 
                 $args = wp_parse_args( $args, array(
-                        'show_option_all'    => '',
+                        'show_option_all'    => __( 'Select a category', 'sm' ),
                         'show_option_none'   => '',
                         'option_none_value'  => '-1',
                         'orderby'            => 'ID', 
@@ -220,8 +220,27 @@ if( ! class_exists( 'SM_Helper' ) ) {
                     )
                 );
             wp_dropdown_categories( $args );
-        } 
-         
+        }
+        
+        /**
+         * Dropdown creator
+         *
+         * @since 1.0.0
+         */
+        static public function get_dropdown( $data = array(), $name = 'form_select' ) {
+            $html = '<select name="' . $name . '" id="' . $name . '">';
+            foreach( $data as $key => $val ) {
+                $html .= '<option value="' . $key . '">' . $val . '</option>';
+            }
+            $html .= '</select>';
+            
+            return apply_filters(
+                'sm_helper_get_dropdown',
+                $html,
+                $data,
+                $name
+            );
+        }
         
     }//end class
     

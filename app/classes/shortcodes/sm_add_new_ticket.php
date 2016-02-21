@@ -17,6 +17,8 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
         
         public function render_shortcode() {
             
+            $ticket = SM_Loader::Load( 'SM_Ticket_CPT', 2840 );
+            
             if( ! is_user_logged_in() ) {
                 return __( 'You have to login to create a ticket', 'sm' );
             }
@@ -73,6 +75,8 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
                     if( $ticket_category ){
                         $ticket->post_terms = array( SM_Config::SM_TICKET_TAXONOMY => array( $ticket_category )  );
                     }
+                    
+                    $ticket->priority = $_REQUEST['ticket_priority'];
                     
                     $ticket->save();
                     

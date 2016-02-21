@@ -13,6 +13,10 @@
         <?php SM_Helper::terms_dropdown( SM_Config::SM_TICKET_TAXONOMY , array( 'name'=>'ticket_category' ) ); ?>
     </div>
     <div class="sm_form">
+        <label for="title"><?php _e( 'Priority', 'sm' ) ?></label>
+        <?php echo SM_Ticket_CPT::get_priority_dropdown(); ?>
+    </div>
+    <div class="sm_form">
         <label for="title"><?php _e( 'Ticket details', 'sm' ) ?></label>
         <?php
             $content = '';
