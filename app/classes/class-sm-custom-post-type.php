@@ -262,12 +262,20 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          */
         public function prepare_meta() {
             $fields = get_class_vars( get_class( $this ) );
+			foreach( $this->_ignore_fields as $f){ unset( $fields[$f] ); }
+			unset( $fields['_ignore_fields'] );
+			unset( $fields['post_terms'] );
+			unset( $fields['custom_data'] );
+			
             $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
             
+
             foreach( $fields as $meta => $val ) {
                 if( ! in_array( $meta, ( array ) $this->_ignore_fields ) ) {
                     if( $meta == '_POST_TYPE' ) continue;
-                    $this->$meta = get_post_meta( $this->ID, $meta, true );
+		    foreach( $fields as $meta => $val ) {
+                        $this->$meta = get_post_meta( $this->ID, $meta, true );
+                    }
                 }
             }
         }
