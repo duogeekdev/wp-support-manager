@@ -2,7 +2,7 @@
 /**
 Plugin Name: WordPress Support Manager
 Plugin URI:  https://wp-support-manager.com/
-Version:     1.0.0-beta
+Version:     1.0.0-beta-1
 Description: The most powerful, easy to use and flexible support management plugin for WordPress sites available.
 Author:      duogeek, oneTarek
 Author URI:  http://wp-support-manager.com/

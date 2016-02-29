@@ -69,6 +69,7 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
                      
                       
                     $ticket = SM_Loader::Load( 'SM_Ticket_CPT' );
+                    
                     $ticket->post_title = trim( $_REQUEST['ticket_title'] );
                     $ticket->post_content = trim( $_REQUEST['ticket_content'] );
                     

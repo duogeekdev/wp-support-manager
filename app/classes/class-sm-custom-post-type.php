@@ -103,17 +103,18 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             
             if( $id != null ) {
                 $this->ID = $id;
+                
+                $this->prepare_post();
+                $this->prepare_meta();
             }
             
+            $this->post_author = get_current_user_id();
             $this->_ignore_fields = array(
                                         'post_title',
                                         'post_content',
                                         '_POST_TYPE'
                                     );
-            
-            $this->prepare_post();
-            $this->prepare_meta();
-            
+
         }
         
         /**
@@ -230,7 +231,8 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
             
             foreach( $fields as $meta => $val ) {
-                if( ! in_array( $meta, $this->_ignore_fields ) ) {
+                if( ! in_array( $meta, ( array ) $this->_ignore_fields ) ) {
+                    if( $meta == '_POST_TYPE' ) continue;
                     update_post_meta( $this->ID, $meta, $this->$meta );
                 }
             }
@@ -263,7 +265,8 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
             
             foreach( $fields as $meta => $val ) {
-                if( ! in_array( $meta, $this->_ignore_fields ) ) {
+                if( ! in_array( $meta, ( array ) $this->_ignore_fields ) ) {
+                    if( $meta == '_POST_TYPE' ) continue;
                     $this->$meta = get_post_meta( $this->ID, $meta, true );
                 }
             }
@@ -276,7 +279,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          public function save_post_terms(){
              
             if( ! $this->ID ) return ;
-            foreach( $this->post_terms as $taxonomy => $terms ){
+            foreach( ( array ) $this->post_terms as $taxonomy => $terms ){
                 wp_set_post_terms( $this->ID, $terms, $taxonomy );
             }
             
