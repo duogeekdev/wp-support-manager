@@ -77,7 +77,7 @@ if( ! class_exists( 'SC_sm_add_new_ticket' ) ) {
                         $ticket->post_terms = array( SM_Config::SM_TICKET_TAXONOMY => array( $ticket_category )  );
                     }
                     
-                    $ticket->priority = $_REQUEST['ticket_priority'];
+                    $ticket->priority = isset( $_REQUEST['ticket_priority'] ) ? $_REQUEST['ticket_priority'] : SM_Config::SM_TICKET_PRIORITY_LOW;
                     
                     $ticket->save();
                     
