@@ -51,8 +51,26 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             
             add_action( 'wp_enqueue_scripts', array( &$this, 'register_scripts_front_end' ) );
             add_action( 'admin_enqueue_scripts', array( &$this, 'register_scripts_admin_end' ) );
-            
+            //add_filter( 'template_include', array( $this, 'ticket_single_template' ) );
+			add_filter( 'single_template', array( $this, 'ticket_single_template' ) );
         }
+		
+		/**
+		 * Load Template file for a single ticket.
+		 */
+		public function ticket_single_template( $template )
+		{
+				$object = get_queried_object();
+				$ticket_post_type = SM_Config::SM_TICKET_POST_TYPE;
+				if ( ! empty( $object->post_type ) && $object->post_type == $ticket_post_type ){
+					 if( ! strpos( $template , "single-".$ticket_post_type.".php" ) ){
+					 $template = SM_PLUGIN_DIR . '/app/includes/templates/ticket-single-page.php';
+					 }
+				}
+			
+			return $template;
+		}		
+		
         
         /**
          * Create singleton class instance
