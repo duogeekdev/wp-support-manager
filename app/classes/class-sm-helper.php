@@ -242,6 +242,11 @@ if( ! class_exists( 'SM_Helper' ) ) {
             );
         }
         
+		
+	
+		
+		
+		
     }//end class
     
 }

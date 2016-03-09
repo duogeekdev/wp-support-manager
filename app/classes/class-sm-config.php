@@ -28,6 +28,8 @@ if( ! class_exists( 'SM_Config' ) ) {
         /********** ShortCodes **********/
         const SM_SC_ALL_TICKETS = 'sm_all_tickets';
         const SM_SC_ADD_NEW_TICKET = 'sm_add_new_ticket';
+		
+		const SM_DEFAULT_TEMPLATE_NAME = 'default';
         
     }
     

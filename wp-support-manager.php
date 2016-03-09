@@ -17,6 +17,7 @@ if( ! defined( 'SM_PLUGIN_DIR' ) ) define( 'SM_PLUGIN_DIR', plugin_dir_path( __F
 if( ! defined( 'SM_FILES_DIR' ) ) define( 'SM_FILES_DIR', SM_PLUGIN_DIR . 'app' );
 if( ! defined( 'SM_PLUGIN_URI' ) ) define( 'SM_PLUGIN_URI', plugins_url( '', __FILE__ ) );
 if( ! defined( 'SM_FILES_URI' ) ) define( 'SM_FILES_URI', SM_PLUGIN_URI . '/app' );
+if( ! defined( 'SM_TEMPLATE_DIR' ) ) define( 'SM_TEMPLATE_DIR', SM_FILES_DIR . '/templates' );
 
 require_once SM_FILES_DIR . '/loader.php';
 
