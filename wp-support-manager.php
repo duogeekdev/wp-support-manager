@@ -66,7 +66,7 @@ if( ! class_exists( 'SM_Plugin' ) ) {
 				$ticket_post_type = SM_Config::SM_TICKET_POST_TYPE;
 				if ( ! empty( $object->post_type ) && $object->post_type == $ticket_post_type ){
 					 if( ! strpos( $template , "single-".$ticket_post_type.".php" ) ){
-					 $template = SM_PLUGIN_DIR . '/app/includes/templates/ticket-single-page.php';
+					 $template = SM_Helper::get_template_path() . '/ticket-single-page.php';
 					 }
 				}
 			
