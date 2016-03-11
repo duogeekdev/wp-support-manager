@@ -247,6 +247,29 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			return $options
 		}
 		
+		public static function get_all_templates(){
+			static $templates; //run this function process only one time
+			if( is_array($templates) ){ return $templates;}
+			
+			#SCANE TEMPLATE DIRECTORY
+			$files = scandir( SM_TEMPLATE_DIR );
+			$templates = array();
+			foreach( $files as $file ){
+				if( $file !="." && $file != ".." && is_dir( SM_TEMPLATE_DIR."/".$file ) ){ 
+					$templates[$file]=array(
+						"path" => SM_TEMPLATE_DIR."/".$file, 
+						"url" => SM_TEMPLATE_URI."/".$file
+					 );
+				}
+			}
+			#END SCAN
+			
+			#ADD TEMPLATE BY ADDONS
+			$templates = apply_filters( "sm_templates" , $templates );
+			return $templates;		
+		
+		}
+		
 		
 		public static function get_template_path(){
 			static $path = "";
