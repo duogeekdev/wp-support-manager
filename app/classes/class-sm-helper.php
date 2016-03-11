@@ -296,7 +296,32 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			return $path;	
 			
 		}
+
+		public static function get_template_url(){
+			static $url = "";
+			if( $url != "" ){ return $url;}
+			$url = apply_filters("sm_template_url", $url);
+			if( $url != "" ){ return $url; }
+
+			//select active template
+			$opt = self::get_options();
+			$templates = self::get_all_templates();
+			$active_template = "default";
+			if( isset( $opt['active_template'] ) && $opt['active_template'] !="" )
+			{
+				if( isset( $templates[ $opt['active_template'] ] ) )
+				{
+				$active_template = $opt['active_template'];
+				}
 				
+			}
+			
+			$template = $templates[ $active_template ] ;
+			$url = $template['url'];	
+				
+			return $url;	
+			
+		}				
 		
 		public static function get_active_template(){
 		
