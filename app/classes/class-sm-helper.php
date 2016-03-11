@@ -244,7 +244,7 @@ if( ! class_exists( 'SM_Helper' ) ) {
         
 		public static function get_options(){		
 			$options = SM_Loader::Create( 'SM_Options' )->get_options();
-			return $options
+			return $options;
 		}
 		
 		public static function get_all_templates(){
