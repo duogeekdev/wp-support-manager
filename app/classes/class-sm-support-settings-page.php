@@ -66,6 +66,20 @@ if( ! class_exists( 'SM_Support_Settings_Page' ) ) {
                     </select>
                 </td>
             </tr>
+
+            <tr>
+                <td><?php _e( 'Select Template:', 'sm' ); ?></td>
+                <td>
+                    <select name="sm_options[active_template]" data-option="active_template">
+                        <option value=""><?php _e( 'Select Template', 'sm' ); ?></option>
+                        <?php 
+						$tempaltes =  array("default", "classic");
+						foreach( $tempaltes as $t ) { ?>
+                        <option <?php echo isset( $this->data['active_template'] ) && $this->data['active_template'] == $t ? 'selected' : '' ?> value="<?php echo $t ?>"><?php echo ucfirst($t) ?></option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>			
             <?php
             $output = ob_get_contents();
             ob_get_clean();

@@ -242,9 +242,43 @@ if( ! class_exists( 'SM_Helper' ) ) {
             );
         }
         
+		public static function get_options(){		
+			$options = SM_Loader::Create( 'SM_Options' )->get_options();
+			return $options
+		}
 		
-	
 		
+		public static function get_template_path(){
+			static $path = "";
+			if( $path != "" ){ return $path;}
+			$path = apply_filters("sm_template_path", $path);
+			if( $path != "" ){ return $path; }
+
+			//select active template
+			$opt = self::get_options();
+			$templates = self::get_all_templates();
+			$active_template = "default";
+			if( isset( $opt['active_template'] ) && $opt['active_template'] !="" )
+			{
+				if( isset( $templates[ $opt['active_template'] ] ) )
+				{
+				$active_template = $opt['active_template'];
+				}
+				
+			}
+			
+			$template = $templates[ $active_template ] ;
+			$path = $template['path'];	
+				
+			return $path;	
+			
+		}
+				
+		
+		public static function get_active_template(){
+		
+		
+		}
 		
 		
     }//end class
