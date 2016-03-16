@@ -323,11 +323,32 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			
 		}				
 		
-		public static function get_active_template(){
+		public static function get_default_template_path(){
+			return SM_TEMPLATE_DIR."/default";
+		}
+
+		public static function get_default_template_url(){
+			return SM_TEMPLATE_URI."/default";
+		}		
 		
+		public static function get_template_file( $block ){
+			$template_path = self::get_template_path();
+			
+			switch( $block ){
+				case  "ticket-single-page" : 
+				{
+					if( file_exists( $template_path."/ticket-single-page.php" ) )
+					return $template_path."/ticket-single-page.php";
+					else
+					return self::get_default_template_path()."/ticket-single-page.php";	
+				break;
+				}
+			
+			}
+			
 		
 		}
-		
+				
 		
     }//end class
     
