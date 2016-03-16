@@ -65,17 +65,43 @@ if( ! class_exists( 'SM_Plugin' ) ) {
 				$object = get_queried_object();
 				$ticket_post_type = SM_Config::SM_TICKET_POST_TYPE;
 				if ( ! empty( $object->post_type ) && $object->post_type == $ticket_post_type ){					
-					 $template = SM_Helper::get_template_file("ticket-single-page");					
+					 $template = SM_Helper::get_template_file("ticket-single-page");
+					 $this->add_header_footer_action();					
 				}
 			
 			return $template;
 		}		
 		
-		public function prepare_template_scripts( $page = ""){
+		public function add_header_footer_action( $page = ""){
 			
-			
+			add_action('wp_head', array($this, 'sm_header' ) );
+			add_action('wp_footer',  array($this, 'sm_footer' ) );				
 		
 		}
+		
+		/**
+		 * Header scripts
+		 */
+		 public function sm_header(){
+		 	
+			#print some common required style and scripts here
+			
+			#let other plugin or templates to load srtipts
+			do_action("sm_wp_head");
+		 
+		 }
+		 
+		/**
+		 * Footer scripts
+		 */
+		 public function sm_footer(){
+		 	
+			#print some common required style and scripts here
+			
+			#let other plugin or templates to load srtipts
+			do_action("sm_wp_footer");
+		 
+		 }		 
         
         /**
          * Create singleton class instance
