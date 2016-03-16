@@ -251,9 +251,18 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			static $templates; //run this function process only one time
 			if( is_array($templates) ){ return $templates;}
 			
+			$templates = array();
+			#CHECK IN AVTIVE THEME DIRECTORY
+			if( file_exists( get_template_directory()."/wp-support-manager" ) ) {
+				$templates['wp_theme_directory'] = array(
+					"path" =>get_template_directory()."/wp-support-manager", 
+					"url" => get_template_directory_uri()."/wp-support-manager"
+					);
+			}
+			
 			#SCANE TEMPLATE DIRECTORY
 			$files = scandir( SM_TEMPLATE_DIR );
-			$templates = array();
+			
 			foreach( $files as $file ){
 				if( $file !="." && $file != ".." && is_dir( SM_TEMPLATE_DIR."/".$file ) ){ 
 					$templates[$file]=array(
