@@ -64,10 +64,8 @@ if( ! class_exists( 'SM_Plugin' ) ) {
 		{
 				$object = get_queried_object();
 				$ticket_post_type = SM_Config::SM_TICKET_POST_TYPE;
-				if ( ! empty( $object->post_type ) && $object->post_type == $ticket_post_type ){
-					 if( ! strpos( $template , "single-".$ticket_post_type.".php" ) ){
-					 $template = SM_Helper::get_template_file("ticket-single-page");
-					 }
+				if ( ! empty( $object->post_type ) && $object->post_type == $ticket_post_type ){					
+					 $template = SM_Helper::get_template_file("ticket-single-page");					
 				}
 			
 			return $template;
