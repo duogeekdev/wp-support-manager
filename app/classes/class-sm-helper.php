@@ -340,30 +340,13 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			return SM_TEMPLATE_URI."/default";
 		}		
 		
-		public static function get_template_file( $file ){
+		public static function get_template_file( $file, $load_fallback = true ){
 			$template_path = self::get_template_path();
-			
-			switch( $file ){
-				
-				case  "functions" : 
-				{
-					if( file_exists( $template_path."/functions.php" ) )
-					return $template_path."/functions.php";
-					else
-					return self::get_default_template_path()."/functions.php";	
-				break;
-				}				
-				case  "ticket-single-page" : 
-				{
-					if( file_exists( $template_path."/ticket-single-page.php" ) )
-					return $template_path."/ticket-single-page.php";
-					else
-					return self::get_default_template_path()."/ticket-single-page.php";	
-				break;
-				}
-			
-			}
-			
+
+			if( file_exists( $template_path."/".$file.".php" ) )
+			return $template_path."/".$file.".php";
+			else
+			return self::get_default_template_path()."/".$file.".php";	
 		
 		}
 				

@@ -52,7 +52,7 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             SM_Loader::Create( 'SM_ShortCodes' );
             
 			#Load Active Template Functions.php
-			$functions_file = SM_Helper::get_template_file("functions");
+			$functions_file = SM_Helper::get_template_file("functions", false);
 			if( file_exists( $functions_file ) ){
 				include_once( $functions_file ) ;
 			}
