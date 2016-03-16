@@ -345,8 +345,10 @@ if( ! class_exists( 'SM_Helper' ) ) {
 
 			if( file_exists( $template_path."/".$file.".php" ) )
 			return $template_path."/".$file.".php";
-			else
+			elseif( $load_fallback )
 			return self::get_default_template_path()."/".$file.".php";	
+			else
+			return "";
 		
 		}
 				

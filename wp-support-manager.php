@@ -53,7 +53,7 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             
 			#Load Active Template Functions.php
 			$functions_file = SM_Helper::get_template_file("functions", false);
-			if( file_exists( $functions_file ) ){
+			if( $functions_file !="" && file_exists( $functions_file ) ){
 				include_once( $functions_file ) ;
 			}
 			
