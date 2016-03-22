@@ -271,26 +271,16 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         }
         
         /**
-         * Save meta dat
+         * Save meta data
          *
          * @since 1.0.0
          */
-        public function save_meta_data( $class = null ) {
+        public function save_meta_data() {
             
-            if( $class == null ) {
-                $class = $this;
-            }
-            
-            $data = array();
-            $fields = get_class_vars( get_class( $this ) );
-            
-            $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $fields );
+            $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $this->metas );
             
             foreach( $fields as $meta => $val ) {
-                if( ! in_array( $meta, ( array ) $this->_ignore_fields ) ) {
-                    if( $meta == '_POST_TYPE' ) continue;
                     update_post_meta( $this->ID, $meta, $this->$meta );
-                }
             }
             
         }
