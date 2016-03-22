@@ -11,7 +11,9 @@
 		
 		<?php endwhile; ?>
 		
-		
+		<?php 
+		sm_reply_form();
+		?>
 	</div>	
 	
 <?php get_footer() ?>

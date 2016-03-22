@@ -30,7 +30,7 @@ class SM_Reply_Manager{
 	
     public function save_new(){
 		   $response = array();
-		//write_log($_REQUEST);
+		write_log($_REQUEST);
 		if( ! SM_Helper::check_nonce() ) {
 		
 				$response['status'] = 'error';
@@ -44,6 +44,11 @@ class SM_Reply_Manager{
 				$response['status'] = 'error';
 				$response['msg' ] =  __( 'Reply content required', 'sm' );
 			 }
+			 if( !isset( $_REQUEST['ticket_id'] ) || 0 == intval( $_REQUEST['ticket_id'] )  ){
+				$error = true;
+				$response['status'] = 'error';
+				$response['msg' ] =  __( 'Ticket ID required', 'sm' );
+			 }			
 							  
 			 if( ! $error ){
 				
@@ -51,7 +56,7 @@ class SM_Reply_Manager{
 				  
 				$reply = SM_Loader::Load( 'SM_Reply_CPT' );
 								
-				$reply->post_content = trim( $_REQUEST['replyt_content'] );
+				$reply->post_content = trim( $_REQUEST['reply_content'] );
 				if( isset( $_REQUEST['reply_private'] ) && $_REQUEST['reply_private'] == "yes" ){
 					$reply->is_private = true;
 				}

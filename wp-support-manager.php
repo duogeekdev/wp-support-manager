@@ -20,6 +20,7 @@ if( ! defined( 'SM_FILES_URI' ) ) define( 'SM_FILES_URI', SM_PLUGIN_URI . '/app'
 if( ! defined( 'SM_TEMPLATE_DIR' ) ) define( 'SM_TEMPLATE_DIR', SM_FILES_DIR . '/templates' );
 if( ! defined( 'SM_TEMPLATE_URI' ) ) define( 'SM_TEMPLATE_URI', SM_FILES_URI . '/templates' );
 
+require_once SM_FILES_DIR . '/includes/functions.php';
 require_once SM_FILES_DIR . '/loader.php';
 
 if( ! class_exists( 'SM_Plugin' ) ) {
@@ -50,6 +51,7 @@ if( ! class_exists( 'SM_Plugin' ) ) {
             SM_Loader::Create( 'SM_Settings' );
             SM_Loader::Create( 'SM_Settings_Parent' );
             SM_Loader::Create( 'SM_ShortCodes' );
+			SM_Loader::Load( 'SM_Reply_Manager' );
             
 			#Load Active Template Functions.php
 			$functions_file = SM_Helper::get_template_file("functions", false);

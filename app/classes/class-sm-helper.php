@@ -351,6 +351,14 @@ if( ! class_exists( 'SM_Helper' ) ) {
 			return "";
 		
 		}
+		/**
+		 * Load ticket reply form template file
+		 */
+		public function reply_form(){
+			include( self::get_template_file( "add-new-reply-form" ) );
+		}
+
+
 				
 		
     }//end class

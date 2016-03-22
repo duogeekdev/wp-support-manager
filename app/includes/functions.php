@@ -35,3 +35,12 @@ function sm_get_template_path(){
 function sm_template_path(){
 	echo sm_get_template_path();
 }
+
+/**
+ * Reply Form
+ **/
+function sm_reply_form(){
+	SM_Helper::reply_form();
+}
+
+
