@@ -24,19 +24,14 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
          */
         public $status = SM_Config::SM_TICKET_STATUS_ACTIVE;
         
-        /**
-         * Internal status
-         *
-         * @since 1.0.0
-         */
-        public $internal = false;
-        
-        /**
-         * Priority status
-         *
-         * @since 1.0.0
-         */
-        public $priority = false;
+		/**
+		 * List of used post meta name
+		 * Meta name must not be same as any property of this class as well as it's parent class.
+		 */
+		 protected $meta_keys = array(
+		 		"internal", //Internal status
+				"priority", //Priority status
+		 	);
         
         /**
          * Class Constructor
