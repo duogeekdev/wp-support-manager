@@ -91,7 +91,17 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          *@example_value: array( "taxonomy_name1"=>array( teram_id_1, 2, 3...), "taxonomy_name2"=>array('term_slug_1', "slug2".....) );
          */
         public $post_terms = array();
-         
+        
+		/**
+		 * List of used post meta name
+		 * Meta name must not be same as any property of this class.
+		 */
+		 protected $meta_keys = array();
+		 
+		 /**
+		  * Store the meta value with meta key 
+		  */
+		 public $metas = array(); 
         
         
         /**
@@ -116,6 +126,52 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
                                     );
 
         }
+
+
+	/**
+     * Magic getter to to get property from referencing array.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __get( $prop ) {
+        if ( in_array( $prop, $this->meta_keys ) ) {
+            return array_key_exists( $prop, $this->metas ) ? $this->metas[ $prop ] : null;
+        }
+
+        return $this->{$prop};
+    }
+
+    /**
+     * Magic isset to check property in referencing array.
+     *
+     * @param $prop
+     *
+     * @return mixed
+     */
+    public function __isset( $prop ) {
+        return isset( $this->{$prop} ) || isset( $this->metas[ $prop ] );
+    }
+
+    /**
+     * Magic set to to check and set property in referencing array..
+     *
+     * @param $prop
+	 * @param $val
+     *
+     * @return void
+     */
+
+    public function __set( $prop, $val ) {
+		if( in_array( $prop, $this->meta_keys ) ){
+			$this->metas[$prop] = $val;
+		}
+		else{
+			$this->{$prop} = $val;
+		}
+    }
+
         
         /**
      * Called before saving data.
