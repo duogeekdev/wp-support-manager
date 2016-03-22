@@ -50,12 +50,13 @@ class SM_Reply_Manager{
 				 
 				  
 				$reply = SM_Loader::Load( 'SM_Reply_CPT' );
-				
-				$reply->post_title = trim( $_REQUEST['reply_title'] );
+								
 				$reply->post_content = trim( $_REQUEST['replyt_content'] );
+				if( isset( $_REQUEST['reply_private'] ) && $_REQUEST['reply_private'] == "yes" ){
+					$reply->is_private = true;
+				}
 				
-				
-				$ticket->save();
+				$reply->save();
 				
 				$response['status'] = 'success';
 				$response['msg' ] =  __( 'New reply has been created successfully', 'sm' );

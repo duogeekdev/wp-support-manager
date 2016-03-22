@@ -16,7 +16,16 @@ if( ! class_exists( 'SM_Reply_CPT' ) ) {
          * @since 1.0.0
          */
         protected static $_POST_TYPE = SM_Config::SM_REPLY_POST_TYPE;
-        
+		
+		/**
+		 * List of used post meta name
+		 * Meta name must not be same as any property of this class as well as it's parent class.
+		 */
+		 protected $meta_keys = array(
+		 		"is_private", //is this reply private, value true/false
+		 	);        
+		
+		
         /**
          * Class Constructor
          */
