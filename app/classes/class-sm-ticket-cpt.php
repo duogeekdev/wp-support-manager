@@ -45,10 +45,6 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
          */
         public function __construct( $id = null ) {
             parent::__construct( $id );
-            
-            if( $id != null ) {
-                $this->_prepare_meta();
-            }
         }
         
         /**
@@ -260,23 +256,7 @@ if( ! class_exists( 'SM_Ticket_CPT' ) ) {
                     $post,
                     $this
                 );
-        }
+        }        
         
-        /**
-         * Prepare meta
-         *
-         * @since 1.0.0
-         */
-        private function _prepare_meta() {
-            $post = $this->get_post();
-            $fields = get_class_vars( __CLASS__ );
-            
-            foreach( $fields as $field => $val ) {
-                if( property_exists( $this, $field ) && isset( $post->$field ) ){
-                    //$this->$field = $post->$field;
-                }
-            }
-        }
-        
-    }
-}
+    }//end class
+}//end if
