@@ -80,12 +80,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          * @since 1.0.0
          */
         public $custom_data = array();
-        
-        /**
-         * Fields to be ignored from meta
-         */
-        public $_ignore_fields = array();
-        
+                
         /**
          *Post taxonomy terms
          *@example_value: array( "taxonomy_name1"=>array( teram_id_1, 2, 3...), "taxonomy_name2"=>array('term_slug_1', "slug2".....) );
@@ -119,11 +114,6 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             }
             
             $this->post_author = get_current_user_id();
-            $this->_ignore_fields = array(
-                                        'post_title',
-                                        'post_content',
-                                        '_POST_TYPE'
-                                    );
 
         }
 
