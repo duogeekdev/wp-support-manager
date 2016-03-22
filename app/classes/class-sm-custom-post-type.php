@@ -271,7 +271,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
             $fields = apply_filters( 'sm_save_post_meta_' . $this->get_post_type(), $this->metas );
             
             foreach( $fields as $meta => $val ) {
-                    update_post_meta( $this->ID, $meta, $this->$meta );
+                    update_post_meta( $this->ID, $meta, $val );
             }
             
         }
@@ -300,9 +300,9 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
         public function prepare_meta() {
 
 		    foreach( $this->meta_keys as $key ) {
-				$this->$metas[ $key ] = get_post_meta( $this->ID, $key, true );
+				$this->metas[ $key ] = get_post_meta( $this->ID, $key, true );
             }
-			$this->$metas= apply_filters( 'sm_prepare_meta_' . $this->get_post_type(), $this->$metas );	
+			$this->metas = apply_filters( 'sm_prepare_meta_' . $this->get_post_type(), $this->metas );	
          
         }
         
