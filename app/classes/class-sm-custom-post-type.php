@@ -73,14 +73,14 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
          * @since 1.0.0
          */
         public $post_status ='publish' ;
-        
-        /**
-         * Custom data
-         *
-         * @since 1.0.0
-         */
-        public $custom_data = array();
-                
+		
+		/**
+		 * Parent Post ID , need this for reply type posts
+		 * Default 0 for no parent
+		 * @since 1.0.0
+		 */
+         public $post_parent = 0;
+		              
         /**
          *Post taxonomy terms
          *@example_value: array( "taxonomy_name1"=>array( teram_id_1, 2, 3...), "taxonomy_name2"=>array('term_slug_1', "slug2".....) );
@@ -219,6 +219,7 @@ if( ! class_exists( 'SM_Custom_Post_Type' ) ) {
                 'post_title' => ! empty( $this->post_title ) ? $this->post_title : '',
                 'post_type' => $this->get_post_type(),
                 'post_modified' => $this->post_modified,
+				'post_parent' => $this->post_parent,
             );
             
             $post = apply_filters( 'sm_save_post_' . $this->get_post_type(), $post );
